@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Charging History</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="in_time">In-Time: %1$s</string>
+    <string name="out_time">Out-Time: %1$s</string>
+    <string name="battery_start">Battery Start: %1$d</string>
+    <string name="battery_end">Battery End: %1$s</string>
+    <string name="charged_for">Charged for %1$s</string>
+    <string name="battery_increment">+%1$d%%</string>
+    <string name="overcharged_for">Overcharged for %1$s</string>
+    <string name="na">N/A</string>
 </resources>

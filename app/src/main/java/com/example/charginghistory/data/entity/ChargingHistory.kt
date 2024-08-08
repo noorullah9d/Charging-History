@@ -9,5 +9,8 @@ data class ChargingHistory(
     val inTime: Long,
     var outTime: Long?,
     val batteryPercentageStart: Int,
-    var batteryPercentageEnd: Int?
+    var batteryPercentageEnd: Int?,
+    var chargingDuration: Long? = null,
+    var batteryIncrement: Int? = null,
+    var overChargeDuration: Long? = null
 )
