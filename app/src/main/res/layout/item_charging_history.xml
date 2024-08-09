@@ -18,13 +18,30 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Charged for..." />
 
+    <com.example.charginghistory.presentation.widgets.SegmentProgressBar
+        android:id="@+id/progressBarBattery"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginTop="5dp"
+        app:bgColor="@color/light_gray"
+        app:cornerRadius="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:maxProgress="100"
+        app:primaryColor="@color/light_green"
+        app:primaryPercent="10"
+        app:secondaryColor="@color/green"
+        app:secondaryPercent="50" />
+
     <TextView
         android:id="@+id/tvInTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/progressBarBattery"
         tools:text="In-Time: " />
 
     <TextView
@@ -58,8 +75,9 @@
         android:id="@+id/tvBatteryIncrement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/holo_green_light"
+        android:textColor="@color/green"
         android:textSize="16sp"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvBatteryEnd"
         tools:text="Battery Increment: " />
@@ -82,7 +100,7 @@
         android:background="?selectableItemBackgroundBorderless"
         android:padding="5dp"
         android:src="@drawable/ic_delete"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 </androidx.constraintlayout.widget.ConstraintLayout>

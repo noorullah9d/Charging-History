@@ -1,14 +1,16 @@
 package com.example.charginghistory.presentation.fragments.history
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.charginghistory.R
+import com.example.charginghistory.core.click
 import com.example.charginghistory.core.formatDate
 import com.example.charginghistory.core.formatDuration
+import com.example.charginghistory.core.gone
+import com.example.charginghistory.core.visible
 import com.example.charginghistory.data.entity.ChargingHistory
 import com.example.charginghistory.databinding.ItemChargingHistoryBinding
 
@@ -48,22 +50,44 @@ class ChargingHistoryAdapter(
                         ?: root.context.getString(R.string.na)
                 )
 
-                chargingHistory.chargingDuration?.let {
-                    tvTitle.text = root.context.getString(R.string.charged_for, it.formatDuration())
+                chargingHistory.chargingDuration?.let { duration ->
+                    tvTitle.text =
+                        root.context.getString(R.string.charged_for, duration.formatDuration())
+                } ?: run {
+                    tvTitle.text = root.context.getString(R.string.charging)
                 }
+
+                chargingHistory.batteryIncrement?.let { increment ->
+                    tvBatteryIncrement.visible()
+                    tvBatteryIncrement.text =
+                        root.context.getString(R.string.battery_increment, increment)
+                } ?: run {
+                    tvBatteryIncrement.gone()
+                }
+
+                val startPercentage = chargingHistory.batteryPercentageStart
+                val endPercentage = chargingHistory.batteryPercentageEnd ?: startPercentage
+                val incrementedPercentage = chargingHistory.batteryIncrement ?: endPercentage
+
+                progressBarBattery.setMax(100f)
+
                 chargingHistory.batteryIncrement?.let {
-                    tvBatteryIncrement.text = root.context.getString(R.string.battery_increment, it)
+                    progressBarBattery.setPrimaryProgress(startPercentage.toFloat())
+                    progressBarBattery.setSecondaryProgress(incrementedPercentage.toFloat())
+                } ?: run {
+                    progressBarBattery.setPrimaryProgress(startPercentage.toFloat())
+                    progressBarBattery.setSecondaryProgress(0f)
                 }
 
                 chargingHistory.overChargeDuration?.let { duration ->
-                    tvOverChargeWarning.visibility = View.VISIBLE
+                    tvOverChargeWarning.visible()
                     tvOverChargeWarning.text =
                         root.context.getString(R.string.overcharged_for, duration.formatDuration())
                 } ?: run {
-                    tvOverChargeWarning.visibility = View.GONE
+                    tvOverChargeWarning.gone()
                 }
 
-                icDelete.setOnClickListener {
+                icDelete.click {
                     onDeleteClick(chargingHistory)
                 }
             }

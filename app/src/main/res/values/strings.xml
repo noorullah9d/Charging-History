@@ -9,4 +9,5 @@
     <string name="battery_increment">+%1$d%%</string>
     <string name="overcharged_for">Overcharged for %1$s</string>
     <string name="na">N/A</string>
+    <string name="charging">Charging…</string>
 </resources>

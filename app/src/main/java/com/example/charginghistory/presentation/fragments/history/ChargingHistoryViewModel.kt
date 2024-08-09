@@ -51,4 +51,3 @@ class ChargingHistoryViewModel @Inject constructor(
         }
     }
 }
-
