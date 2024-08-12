@@ -48,11 +48,6 @@ dependencies {
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
-    // work manager - kotlin + coroutines
-    implementation("androidx.work:work-runtime-ktx:2.9.0")
-    implementation("androidx.hilt:hilt-work:1.2.0")
-    kapt("androidx.hilt:hilt-compiler:1.2.0")
-
     // room components
     val roomVersion = "2.6.1"
     implementation("androidx.room:room-runtime:$roomVersion")

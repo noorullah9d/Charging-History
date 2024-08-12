@@ -7,15 +7,6 @@ import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import com.example.charginghistory.R
 
-fun Fragment.isAlive() = isAdded && !isDetached && !isRemoving && view != null
-
-suspend fun Fragment?.isSuspendAlive(invoke: suspend () -> Unit) {
-    val result = this != null && isAdded && !isDetached && !isRemoving && view != null
-    if (result) {
-        invoke()
-    }
-}
-
 fun Activity.openFragment(
     destinationId: Int,
     addToBackStack: Boolean,
@@ -40,20 +31,6 @@ fun Activity.openFragment(
 
     navController.navigate(destinationId, bundle, navOptions)
 }
-
-/*fun Fragment.getPreviousFragmentId(): Int? {
-
-    val navController = Navigation
-        .findNavController(
-            requireActivity()
-                .findViewById(R.id.nav_host_fragment)
-        )
-
-    val previousDestinationId = navController.previousBackStackEntry?.destination?.id
-    (requireActivity() as MainActivity).previousDestinationId = previousDestinationId
-
-    return previousDestinationId
-}*/
 
 fun Fragment.popBackStack() {
 
